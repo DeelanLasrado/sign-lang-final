@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Test</title>
+</head>
+<body>
+    <h1>Model File Test</h1>
+    <p>Testing model file accessibility...</p>
+    <script>
+        async function testModelAccess() {
+            try {
+                const response = await fetch('/models/sign_language_recognizer_25-04-2023.task');
+                if (response.ok) {
+                    document.body.innerHTML += '<p style="color: green;">Success! Model file is accessible.</p>';
+                    document.body.innerHTML += `<p>Content type: ${response.headers.get('content-type')}</p>`;
+                    document.body.innerHTML += `<p>Size: ${response.headers.get('content-length')} bytes</p>`;
+                } else {
+                    document.body.innerHTML += `<p style="color: red;">Error: ${response.status} ${response.statusText}</p>`;
+                }
+            } catch (error) {
+                document.body.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        testModelAccess();
+    </script>
+</body>
+</html>
